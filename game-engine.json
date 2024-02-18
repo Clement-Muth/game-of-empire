@@ -1,0 +1,223 @@
+{
+  "startScene": "inGame",
+  "scenes": {
+    "loading": {
+      "nextScene": "menu"
+    },
+    "menu": {
+      "nextScene": "inGame"
+    },
+    "inGame": {
+      "prevScene": "menu",
+      "scenario": [
+        {
+          "startState": "intro",
+          "intro": {
+            "type": "event",
+            "question": "What's your king's name?",
+            "option1": {
+              "value": "Napoléon l'empereur",
+              "action": {
+                "loose": false
+              },
+              "next": "introSuccessor"
+            },
+            "option2": {
+              "value": "Roi Louis le Nul",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "noble": -100
+                }
+              },
+              "next": "introSuccessor"
+            }
+          },
+          "introSuccessor": {
+            "type": "event",
+            "question": "So you're my successor. Are you the one who assassinated me and usurped my throne?",
+            "option1": {
+              "value": "Yes...",
+              "next": "introCharge"
+            },
+            "option2": {
+              "value": "No...",
+              "next": "introCharge"
+            }
+          },
+          "introCharge": {
+            "type": "event",
+            "question": "Well... It's your turn, good luck with them. They're all pretty crazy, you'll see.",
+            "option1": {
+              "value": "Yes...",
+              "next": "legitimacy"
+            },
+            "option2": {
+              "value": "No...",
+              "next": "death_plague"
+            }
+          }
+        },
+        {
+          "startState": "legitimacy",
+          "legitimacy": {
+            "type": "event",
+            "question": "<span class=\"small-description\">Your Majesty, <br/><br/>rumors are questioning your legitimacy. It's time to restore order.<span>",
+            "option1": {
+              "value": "Asserting my legitimacy",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "people": 5,
+                  "noble": 5
+                }
+              },
+              "next": "plague"
+            },
+            "option2": {
+              "value": "Ignore the accusations",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "people": -10,
+                  "noble": -35
+                }
+              },
+              "next": "plague"
+            }
+          },
+          "plague": {
+            "type": "event",
+            "question": "<span class=\"small-description\">Your Majesty, <br/><br/>An epidemic is spreading throughout the kingdom, threatening the health of the people.<span>",
+            "option1": {
+              "value": "Invest in Healthcare",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "loyalty": 10,
+                  "people": 10,
+                  "money": -20
+                }
+              },
+              "next": "visitKingDialogue1"
+            },
+            "option2": {
+              "value": "Ignore the Epidemic",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "loyalty": -10,
+                  "people": -10,
+                  "money": 20
+                }
+              },
+              "next": "visitKingDialogue1"
+            }
+          },
+          "visitKingDialogue1": {
+            "type": "info",
+            "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>The visit of the neighboring king is approaching rapidly. It's a valuable opportunity to strengthen our diplomatic relations and ensure peace in the region.<span>",
+            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#245EA7",
+            "name": "Lord Théobald de Castelgard",
+            "option": {
+              "value": "Continue",
+              "next": "visitKingDialogue2"
+            }
+          },
+          "visitKingDialogue2": {
+            "type": "info",
+            "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>But let's not forget the potential challenges this may pose. The neighboring king is known for his expansionist ambitions and desire to control more territories.<span>",
+            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#245EA7",
+            "name": "Lord Théobald de Castelgard",
+            "option": {
+              "value": "Continue",
+              "next": "visitKingDialogue3"
+            }
+          },
+          "visitKingDialogue3": {
+            "type": "info",
+            "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>We must be cautious in our interactions. It's important to demonstrate our strength and determination while remaining open to dialogue and diplomacy.<span>",
+            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#245EA7",
+            "name": "Lord Théobald de Castelgard",
+            "option": {
+              "value": "Continue",
+              "next": "visitKing"
+            }
+          },
+          "visitKing": {
+            "type": "event",
+            "question": "<span class=\"small-description\">Accepter l'alliance<span>",
+            "option1": {
+              "value": "Yes",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "army": 10,
+                  "noble": 10,
+                  "money": -20
+                }
+              },
+              "next": "visitKingDialogue1"
+            },
+            "option2": {
+              "value": "No",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "noble": -10,
+                  "money": -10
+                }
+              },
+              "next": "visitKingDialogue1"
+            }
+          },
+          "death_plague": {
+            "type": "info",
+            "question": "<span>The plague has finally entered the castle where it is quite effective at wiping out a large part of the court. You included</span>",
+            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Continue",
+              "action": {
+                "loose": true
+              }
+            }
+          }
+        },
+        {
+          "startState": "firstQuestion",
+          "firstQuestion": {
+            "type": "event",
+            "question": "Blabla scenarion 2",
+            "option1": {
+              "value": "Napoléon l'empereur",
+              "action": {
+                "loose": false
+              },
+              "next": "legitimacy"
+            },
+            "option2": {
+              "value": "Roi Louis le Nul",
+              "action": {
+                "loose": false,
+                "updateScore": {
+                  "noble": -100
+                }
+              },
+              "next": "death_plague"
+            }
+          }
+        }
+      ]
+    },
+    "dead": {
+      "nextScene": "menu"
+    },
+    "win": {
+      "nextScene": "menu"
+    }
+  }
+}
