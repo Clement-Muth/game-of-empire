@@ -86,7 +86,7 @@
                   "noble": 5
                 }
               },
-              "next": "plague"
+              "next": "earthquake"
             },
             "option2": {
               "value": "Ignore the accusations",
@@ -94,6 +94,37 @@
                 "updateScore": {
                   "people": -10,
                   "noble": -35
+                }
+              },
+              "next": "earthquake"
+            }
+          },
+          "earthquake": {
+            "type": "event",
+            "question": "<span class=\"small-description\">An earthquake destroyed a large part of the capital! We are waiting your orders.<span>",
+            "content": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "var(--orange)",
+            "option1": {
+              "value": "Save the victims",
+              "action": {
+                "updateScore": {
+                  "loyalty": 20,
+                  "people": 15,
+                  "noble": 15,
+                  "money": -20
+                }
+              },
+              "next": "plague"
+            },
+            "option2": {
+              "value": "Pevent pillaging",
+              "action": {
+                "updateScore": {
+                  "army": 5,
+                  "loyalty": -5,
+                  "people": -20,
+                  "noble": -15,
+                  "money": 15
                 }
               },
               "next": "plague"
@@ -203,7 +234,7 @@
             "type": "event",
             "question": "<span><br/><br/>We can never be too prepared. We need to recruit more soliders!<span>",
             "content": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#EE3623",
+            "color": "var(--orange)",
             "name": "General Titus",
             "option1": {
               "value": "Yes",
