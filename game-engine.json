@@ -37,7 +37,7 @@
         },
         "noble": {
           "color": "var(--darkGold)",
-          "name": "Pierre",
+          "name": "Lord Théodor",
           "picture": "<img src=\"/public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "people": {
@@ -234,7 +234,7 @@
           },
           "visitKing": {
             "type": "event",
-            "question": "<span class=\"small-description\">Accepter l'alliance<span>",
+            "question": "<span class=\"small-description\">Accept the alliance<span>",
             "caracter": "king",
             "option1": {
               "value": "Yes",
