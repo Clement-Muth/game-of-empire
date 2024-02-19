@@ -3,7 +3,7 @@ import checkPercentage from "../loader.js";
 import startMusic from "../options/startMusic.js"
 
 const loadingScene = async (changeScene, sceneEngine) => {
-  await injectPage("pages/loading.html");
+  await injectPage("src/pages/loading.html");
 
   startMusic("../public/sounds/game.mp3");
 

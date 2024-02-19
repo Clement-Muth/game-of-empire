@@ -17,7 +17,7 @@ class GameSenario {
   }
 
   init = async () => {
-    await injectPage("pages/game.html");
+    await injectPage("src/pages/game.html");
 
     Object.entries(this.scores).map(([key, value]) =>
       document.getElementById(`game__card_footer_${key}`).innerText = value

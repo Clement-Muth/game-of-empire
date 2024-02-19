@@ -10,7 +10,7 @@ export const volumeOption = () => {
 }
 
 (async () => {
-  await injection("components/options/options.html");
+  await injection("src/components/options/options.html");
 
   var script = document.createElement("script");
   script.textContent = volumeOption();
