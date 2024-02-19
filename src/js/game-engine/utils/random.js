@@ -5,7 +5,6 @@ const generateUniqueRandom = (maxNr) => {
 
   random = Number(random);
 
-  console.log("haveit:", haveIt, haveIt.length, maxNr + 1);
   if (!haveIt.includes(random)) {
     haveIt.push(random);
 

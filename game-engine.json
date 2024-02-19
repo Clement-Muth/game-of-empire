@@ -214,7 +214,7 @@
                 "updateScore": {
                   "army": 10,
                   "noble": 10,
-                  "money": -20
+                  "money": -10
                 }
               },
               "next": "armyNeedSolider"
@@ -223,8 +223,8 @@
               "value": "No",
               "action": {
                 "updateScore": {
-                  "noble": -10,
-                  "money": -10
+                  "noble": -15,
+                  "money": 0
                 }
               },
               "next": "armyNeedSolider"
@@ -341,18 +341,16 @@
           "doctorDeath": {
             "type": "event",
             "question": "<span><br/><br/>My Majesty! you're dying of gangrene... There's nothing I can do.<span>",
-            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
+            "content": "<img src=\"/public/images/caracters/doctor.svg\" style=\"bottom: 0; width: 280px\" />",
             "color": "var(--dirtBrown)",
-            "name": "Dr. Armand Dubois",
+            "name": "Dr. Armande Dubois",
             "option1": {
               "value": "What...",
               "next": "gangrene"
             },
             "option2": {
               "value": "What...",
-              "action": {
-                "loose": true
-              }
+              "next": "gangrene"
             }
           },
           "gangrene": {
@@ -365,26 +363,6 @@
               "action": {
                 "loose": true
               }
-            }
-          }
-        },
-        {
-          "startState": "firstQuestion",
-          "firstQuestion": {
-            "type": "event",
-            "question": "Blabla scenarion 2",
-            "option1": {
-              "value": "Napoléon l'empereur",
-              "next": "legitimacy"
-            },
-            "option2": {
-              "value": "Roi Louis le Nul",
-              "action": {
-                "updateScore": {
-                  "noble": -65
-                }
-              },
-              "next": "legitimacy"
             }
           }
         },
@@ -407,7 +385,7 @@
             "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
-              "value": "Continue",
+              "value": "Done",
               "action": {
                 "loose": true
               }
@@ -416,10 +394,46 @@
           "alone": {
             "type": "info",
             "question": "<span>The castle is ransacked, your court disperses, and you're left with pigeons to rule over. Well, at least they'll coo-perate better than some nobles!</span>",
+            "content": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; 230px\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Done",
+              "action": {
+                "loose": true
+              }
+            }
+          },
+          "money": {
+            "type": "info",
+            "question": "<span>You die alone, consumed by debts and financial uncertainty, abandoned by the coins that would have once crowned you.</span>",
             "content": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
-              "value": "Continue",
+              "value": "Done",
+              "action": {
+                "loose": true
+              }
+            }
+          },
+          "army": {
+            "type": "info",
+            "question": "<span>Your downfall comes swiftly, betrayed by the soldiers whose loyalty you once commanded, as they trade their swords for selfie sticks in this rebellion.</span>",
+            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Done",
+              "action": {
+                "loose": true
+              }
+            }
+          },
+          "loyaulty": {
+            "type": "info",
+            "question": "<span>Your demise arrives, abandoned by the layout like a lost tourist in a maze of bad graphic design. Looks like even your kingdom's pixels have rebelled!</span>",
+            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Done",
               "action": {
                 "loose": true
               }

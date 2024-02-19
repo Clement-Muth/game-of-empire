@@ -20,7 +20,7 @@ const startAudio = (music) => {
     }, false);
     document.body.addEventListener("click", () => audio.play());
   } catch (err) {
-    console.error(err);
+    return;
   }
 }
 

@@ -39,11 +39,17 @@ class GameSenario {
     )
 
     if (this.scores.noble <= 0) {
-      this.nextScenario(3, "plague")
+      this.nextScenario(2, "plague")
       return false;
     } else if (this.scores.people <= 0) {
-      this.nextScenario(3, "alone")
+      this.nextScenario(2, "alone")
       return false;
+    } else if (this.scores.army <= 0) {
+      this.nextScenario(2, "army");
+    } else if (this.scores.money <= 0) {
+      this.nextScenario(2, "money");
+    } else if (this.scores.loyalty <= 0) {
+      this.nextScenario(2, "loyalty");
     }
 
     return true;
@@ -55,7 +61,7 @@ class GameSenario {
   nextEvent = (nextEventName) => {
     this.currentEvent = this.scenario[nextEventName];
 
-    if (!this.currentEvent) return this.nextScenario(3, "win");
+    if (!this.currentEvent) return this.nextScenario(2, "win");
     switch (this.currentEvent.type) {
       case "event":
         this.event()
