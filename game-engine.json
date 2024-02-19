@@ -151,7 +151,7 @@
               "next": "plague"
             },
             "option2": {
-              "value": "Pevent pillaging",
+              "value": "Prevent pillaging",
               "action": {
                 "updateScore": {
                   "army": 5,
@@ -216,6 +216,7 @@
           },
           "visitKingDialogue2": {
             "type": "info",
+            "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>But let's not forget the potential challenges this may pose. The neighboring king is known for his expansionist ambitions and desire to control more territories.<span>",
             "caracter": "diplomat",
             "option": {
               "value": "Continue",
