@@ -3,9 +3,9 @@ const infoState = ({ currentEvent, ...event }) => {
 
   document.getElementById("game__card_buttons").children.item(1).style = "display: none";
   document.getElementById("game__question").innerHTML = currentEvent.question;
-  document.getElementById("game__caracter_card").innerHTML = currentEvent.content;
-  document.getElementById("game__caracter_card").style = `background-color: ${currentEvent.color}`;
-  document.getElementById("game__caracter_name").innerText = currentEvent.name ?? "";
+  document.getElementById("game__caracter_card").innerHTML = event.caracters[currentEvent.caracter]?.picture ?? currentEvent.picture;
+  document.getElementById("game__caracter_card").style = `background-color: ${event.caracters[currentEvent.caracter]?.color ?? currentEvent.color}`;
+  document.getElementById("game__caracter_name").innerText = event.caracters[currentEvent.caracter]?.name ?? "";
   const abortController = new AbortController();
 
   choice.target.querySelector("span").innerText = choice.object.value

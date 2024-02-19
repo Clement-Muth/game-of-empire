@@ -1,13 +1,13 @@
 import { injectPage } from "../../utils/injection.js";
-import startMusic from "../../options/startMusic.js"
 import infoState from "./infoState.js";
 import eventState from "./eventState.js";
 
 class GameSenario {
-  constructor(scenarios, deaths, onChangeScene) {
+  constructor(caracters, scenarios, deaths, onChangeScene) {
     this.scenarios = scenarios;
     this.scenario = scenarios.at(0);
     this.deaths = deaths;
+    this.caracters = caracters;
     this.currentEventName = this.scenario.startState;
     this.currentEvent = this.scenario[this.scenario.startState];
     this.onChangeScene = onChangeScene
@@ -45,10 +45,13 @@ class GameSenario {
       return false;
     } else if (this.scores.army <= 0) {
       this.nextScenario(2, "army");
+      return false;
     } else if (this.scores.money <= 0) {
       this.nextScenario(2, "money");
+      return false;
     } else if (this.scores.loyalty <= 0) {
       this.nextScenario(2, "loyalty");
+      return false;
     }
 
     return true;
@@ -78,7 +81,7 @@ class GameSenario {
 }
 
 const inGameScene = async (changeScene, sceneEngine) => {
-  const gameSceneEngine = new GameSenario(sceneEngine.scenarios, sceneEngine.deaths, changeScene);
+  const gameSceneEngine = new GameSenario(sceneEngine.caracters, sceneEngine.scenarios, sceneEngine.deaths, changeScene);
 
   await gameSceneEngine.init();
   gameSceneEngine.nextEvent(gameSceneEngine.currentEventName);

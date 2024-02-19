@@ -9,15 +9,55 @@
     },
     "inGame": {
       "prevScene": "menu",
+      "caracters": {
+        "spiritFallen": {
+          "color": "#001123",
+          "name": "Spirit of the Fallen",
+          "picture": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "king": {
+          "color": "#001123",
+          "name": "King",
+          "picture": "<img src=\"/public/images/caracters/king.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "guardian": {
+          "color": "var(--orange)",
+          "name": "Capitaine Édouard Durand",
+          "picture": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "sujet": {
+          "color": "#82B544",
+          "name": "Lady Isabelle de Montclair",
+          "picture": "<img src=\"/public/images/caracters/sujet.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "diplomat": {
+          "color": "#245EA7",
+          "name": "Lord Théobald de Castelgard",
+          "picture": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "noble": {
+          "color": "var(--darkGold)",
+          "name": "Pierre",
+          "picture": "<img src=\"/public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "people": {
+          "color": "var(--dirtBrown)",
+          "name": "Pierre",
+          "picture": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />"
+        },
+        "doctor": {
+          "color": "var(--dirtBrown)",
+          "name": "Dr. Armande Dubois",
+          "picture": "<img src=\"/public/images/caracters/doctor.svg\" style=\"bottom: 0; width: 280px\" />"
+        }
+      },
       "scenarios": [
         {
           "startState": "intro",
           "intro": {
             "type": "event",
+            "caracter": "spiritFallen",
             "question": "Are you the new king?",
-            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#001123",
-            "name": "Spirit of the Fallen",
             "option1": {
               "value": "Yes",
               "next": "introSuccessor"
@@ -30,9 +70,7 @@
           "introSuccessor": {
             "type": "event",
             "question": "So you're my successor. Are you the one who assassinated me and usurped my throne?",
-            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#001123",
-            "name": "Spirit of the Fallen",
+            "caracter": "spiritFallen",
             "option1": {
               "value": "Yes...",
               "next": "introCharge"
@@ -45,9 +83,7 @@
           "introCharge": {
             "type": "event",
             "question": "Well... It's your turn, good luck with them. They're all pretty crazy, you'll see.",
-            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#001123",
-            "name": "Spirit of the Fallen",
+            "caracter": "spiritFallen",
             "option1": {
               "value": "Who?",
               "next": "introGameplay"
@@ -60,9 +96,7 @@
           "introGameplay": {
             "type": "event",
             "question": "Just try to maintain equilibrium among the five powers to ensure your survival.",
-            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#001123",
-            "name": "Spirit of the Fallen",
+            "caracter": "spiritFallen",
             "option1": {
               "value": "Yes",
               "nextScenario": true
@@ -78,6 +112,7 @@
           "legitimacy": {
             "type": "event",
             "question": "<span class=\"small-description\">Your Majesty, <br/><br/>rumors are questioning your legitimacy. It's time to restore order.<span>",
+            "caracter": "king",
             "option1": {
               "value": "Asserting my legitimacy",
               "action": {
@@ -102,8 +137,7 @@
           "earthquake": {
             "type": "event",
             "question": "<span class=\"small-description\">An earthquake destroyed a large part of the capital! We are waiting your orders.<span>",
-            "content": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--orange)",
+            "caracter": "guardian",
             "option1": {
               "value": "Save the victims",
               "action": {
@@ -133,8 +167,7 @@
           "plague": {
             "type": "event",
             "question": "<span class=\"small-description\">Your Majesty, <br/><br/>An epidemic is spreading throughout the kingdom, threatening the health of the people.<span>",
-            "content": "<img src=\"/public/images/caracters/sujet.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#82B544",
+            "caracter": "sujet",
             "option1": {
               "value": "Invest in Healthcare",
               "action": {
@@ -162,9 +195,7 @@
           "visitKingDialogue1": {
             "type": "event",
             "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>The visit of the neighboring king is approaching rapidly. It's a valuable opportunity to strengthen our diplomatic relations and ensure peace in the region.<span>",
-            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#245EA7",
-            "name": "Lord Théobald de Castelgard",
+            "caracter": "diplomat",
             "option1": {
               "value": "Continue",
               "next": "visitKingDialogue2"
@@ -185,10 +216,7 @@
           },
           "visitKingDialogue2": {
             "type": "info",
-            "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>But let's not forget the potential challenges this may pose. The neighboring king is known for his expansionist ambitions and desire to control more territories.<span>",
-            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#245EA7",
-            "name": "Lord Théobald de Castelgard",
+            "caracter": "diplomat",
             "option": {
               "value": "Continue",
               "next": "visitKingDialogue3"
@@ -197,9 +225,7 @@
           "visitKingDialogue3": {
             "type": "info",
             "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>We must be cautious in our interactions. It's important to demonstrate our strength and determination while remaining open to dialogue and diplomacy.<span>",
-            "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "#245EA7",
-            "name": "Lord Théobald de Castelgard",
+            "caracter": "diplomat",
             "option": {
               "value": "Continue",
               "next": "visitKing"
@@ -208,6 +234,7 @@
           "visitKing": {
             "type": "event",
             "question": "<span class=\"small-description\">Accepter l'alliance<span>",
+            "caracter": "king",
             "option1": {
               "value": "Yes",
               "action": {
@@ -233,9 +260,7 @@
           "armyNeedSolider": {
             "type": "event",
             "question": "<span><br/><br/>We can never be too prepared. We need to recruit more soliders!<span>",
-            "content": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--orange)",
-            "name": "General Titus",
+            "caracter": "guardian",
             "option1": {
               "value": "Yes",
               "action": {
@@ -262,9 +287,7 @@
           "peasantHarvest": {
             "type": "event",
             "question": "<span><br/><br/>The harvest has been fantastic my Majesty!<span>",
-            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--dirtBrown)",
-            "name": "Pierre",
+            "caracter": "people",
             "option1": {
               "value": "Feed the people",
               "action": {
@@ -295,9 +318,7 @@
           "noblePigs": {
             "type": "event",
             "question": "<span><br/><br/>my Majesty, would you like to hunts some wild pigs?<span>",
-            "content": "<img src=\"/public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--darkGold)",
-            "name": "Pierre",
+            "caracter": "noble",
             "option1": {
               "value": "Yes",
               "next": "peasantSufferedHunt"
@@ -310,9 +331,7 @@
           "peasantSufferedHunt": {
             "type": "event",
             "question": "<span><br/><br/>You have suffered a terrible accident during the hunt! You're bleeding so much!<span>",
-            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--dirtBrown)",
-            "name": "Pierre",
+            "caracter": "people",
             "option1": {
               "value": "Get a doctor",
               "action": {
@@ -341,9 +360,7 @@
           "doctorDeath": {
             "type": "event",
             "question": "<span><br/><br/>My Majesty! you're dying of gangrene... There's nothing I can do.<span>",
-            "content": "<img src=\"/public/images/caracters/doctor.svg\" style=\"bottom: 0; width: 280px\" />",
-            "color": "var(--dirtBrown)",
-            "name": "Dr. Armande Dubois",
+            "caracter": "doctor",
             "option1": {
               "value": "What...",
               "next": "gangrene"
@@ -356,7 +373,7 @@
           "gangrene": {
             "type": "info",
             "question": "<span>You die alone, rotting away in your bed, just like that leftover sandwich you forgot about in the royal fridge. Looks like even kings can't escape expiration dates!</span>",
-            "content": "<img src=\"/public/images/caracters/dead-king-alone.svg\" style=\"top: 0; bottom: 0; width: 280px\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-king-alone.svg\" style=\"top: 0; bottom: 0; width: 280px\" />",
             "color": "#231100",
             "option": {
               "value": "Continue",
@@ -370,7 +387,7 @@
           "win": {
             "type": "info",
             "question": "<span>Your reign comes to an end, but you have skillfully guided your people. Congratulations on your accomplishments.</span>",
-            "content": "<img src=\"/public/images/caracters/king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"/public/images/caracters/king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -382,7 +399,7 @@
           "plague": {
             "type": "info",
             "question": "<span>The new oligarchy forces you to exile, but don't worry, they have Wi-Fi there. You might not have a kingdom anymore, but at least you'll have a strong connection to complain about it online!</span>",
-            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -394,7 +411,7 @@
           "alone": {
             "type": "info",
             "question": "<span>The castle is ransacked, your court disperses, and you're left with pigeons to rule over. Well, at least they'll coo-perate better than some nobles!</span>",
-            "content": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; 230px\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; 230px\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -406,7 +423,7 @@
           "money": {
             "type": "info",
             "question": "<span>You die alone, consumed by debts and financial uncertainty, abandoned by the coins that would have once crowned you.</span>",
-            "content": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -418,7 +435,7 @@
           "army": {
             "type": "info",
             "question": "<span>Your downfall comes swiftly, betrayed by the soldiers whose loyalty you once commanded, as they trade their swords for selfie sticks in this rebellion.</span>",
-            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -430,7 +447,7 @@
           "loyaulty": {
             "type": "info",
             "question": "<span>Your demise arrives, abandoned by the layout like a lost tourist in a maze of bad graphic design. Looks like even your kingdom's pixels have rebelled!</span>",
-            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
