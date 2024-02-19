@@ -16,7 +16,6 @@ class GameSenario {
 
   init = async () => {
     await injectPage("pages/game.html");
-    startMusic("../public/sounds/game.mp3");
 
     Object.entries(this.scores).map(([key, value]) =>
       document.getElementById(`game__card_footer_${key}`).innerText = value

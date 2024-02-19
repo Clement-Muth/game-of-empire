@@ -8,18 +8,24 @@
  */
 const startAudio = (music) => {
   try {
+    document.getElementsByTagName("audio").item(0)?.remove();
+
     var audio = document.createElement("AUDIO");
 
     audio.id = "menu-audio";
-    document.getElementsByTagName("main").item(0).appendChild(audio);
+    document.getElementsByTagName("body").item(0).appendChild(audio);
     audio.src = music;
 
+    const abortController = new AbortController();
+
     audio.addEventListener("ended", function () {
+      abortController.abort();
       this.currentTime = 0;
       this.play();
     }, false);
-    document.body.addEventListener("click", () => audio.play());
+    document.body.addEventListener("click", () => { abortController.abort(); audio.play() });
   } catch (err) {
+    console.log(err)
     return;
   }
 }

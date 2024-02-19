@@ -103,6 +103,10 @@ main {
     font-size: 56px;
     padding: 0 15px;
   }
+
+  #menu-page {
+    background-size: 900px;
+  }
 }
 
 @media screen and (max-width: 600px) {
