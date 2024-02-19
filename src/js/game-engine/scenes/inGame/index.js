@@ -12,6 +12,8 @@ class GameSenario {
     this.currentEvent = this.scenario[this.scenario.startState];
     this.onChangeScene = onChangeScene
     this.scores = { army: 50, loyalty: 50, money: 50, noble: 50, people: 50 };
+    this.stimCount = 0;
+    this.dopeCount = 0;
   }
 
   init = async () => {
@@ -62,6 +64,7 @@ class GameSenario {
 
   nextEvent = (nextEventName) => {
     this.currentEvent = this.scenario[nextEventName];
+    this.stimCount++;
 
     if (!this.currentEvent) return this.nextScenario(2, "win");
     switch (this.currentEvent.type) {
