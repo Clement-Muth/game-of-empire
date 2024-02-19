@@ -1,33 +1,27 @@
-const updateStats = () => {
-  if (!updateScore) return;
-  (Object.entries(scores).map(([key, value]) => {
-    console.log(scores, key, ":", value, "+=", choice.object.action.updateScore?.[key]);
-    scores = ({ ...scores, [key]: value += choice.object.action.updateScore?.[key] ?? 0 });
-  }
-  ));
-  updateScore(scores);
-}
-
-const eventState = (changeScene, changeState, state, scores, updateScore) => {
+const eventState = ({ currentEvent, ...event }) => {
   const choices = [
-    { target: document.getElementById("game__card_buttons").children.item(0), object: state.option1 },
-    { target: document.getElementById("game__card_buttons").children.item(1), object: state.option2 }
+    { target: document.getElementById("game__card_buttons").children.item(0), object: currentEvent.option1 },
+    { target: document.getElementById("game__card_buttons").children.item(1), object: currentEvent.option2 }
   ];
 
   document.getElementById("game__card_buttons").children.item(1).style = "display: block";
-  document.getElementById("game__question").innerHTML = state.question;
-  document.getElementById("game__caracter_card").innerHTML = "<img src=\"/public/images/caracters/king.svg\" style=\"bottom: 0; width: 280px\" />";
+  document.getElementById("game__question").innerHTML = currentEvent.question;
+  document.getElementById("game__caracter_card").innerHTML = currentEvent.content ?? "<img src=\"/public/images/caracters/king.svg\" style=\"bottom: 0; width: 280px\" />";
+  document.getElementById("game__caracter_card").style = `background-color: ${currentEvent.color}`;
+  document.getElementById("game__caracter_name").innerText = currentEvent.name ?? "";
 
   const abortController = new AbortController();
 
   choices.map((choice) => {
     choice.target.querySelector("span").innerText = choice.object.value
-
     choice.target.addEventListener("click", () => {
-      if (choice.object.action?.loose) changeScene("dead");
-
       abortController.abort();
-      changeState(choice.object.next)
+      if (choice.object.action?.updateScore)
+        if (!event.updateScore(choice.object.action.updateScore))
+          return;
+      if (choice.object.action?.loose) return event.onLoss()
+      if (choice.object.nextScenario) return event.nextScenario();
+      return event.nextEvent(choice.object.next)
     }, { signal: abortController.signal });
   })
 }

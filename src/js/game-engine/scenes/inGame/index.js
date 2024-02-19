@@ -3,38 +3,81 @@ import startMusic from "../../options/startMusic.js"
 import infoState from "./infoState.js";
 import eventState from "./eventState.js";
 
-const inGameScene = async (changeScene, sceneEngine) => {
-  await injectPage("pages/game.html");
+class GameSenario {
+  constructor(scenarios, deaths, onChangeScene) {
+    this.scenarios = scenarios;
+    this.scenario = scenarios.at(0);
+    this.deaths = deaths;
+    this.currentEventName = this.scenario.startState;
+    this.currentEvent = this.scenario[this.scenario.startState];
+    this.onChangeScene = onChangeScene
+    this.scores = { army: 50, loyalty: 50, money: 50, noble: 50, people: 50 };
+  }
 
-  startMusic("../public/sounds/game.mp3");
+  init = async () => {
+    await injectPage("pages/game.html");
+    startMusic("../public/sounds/game.mp3");
 
-  const scenario = 0;
-  let state = sceneEngine.scenario.at(scenario);
-  let scores = { army: 100, loyalty: 100, money: 100, noble: 100, people: 100 };
-
-  const updateScore = (newScore) => {
-    scores = newScore;
-    Object.entries(newScore).map(([key, value]) =>
+    Object.entries(this.scores).map(([key, value]) =>
       document.getElementById(`game__card_footer_${key}`).innerText = value
     )
   }
 
-  const changeState = (nextState) => {
-    const newState = state[nextState];
+  onLoss = () => {
+    console.log("change scene to dead")
+    this.onChangeScene("dead")
+  }
+  onWin = () => {
+    this.onChangeScene("win")
+  }
 
-    if (!newState) return changeScene("win");
-    switch (newState.type) {
+  updateScore = (newScore) => {
+    Object.entries(this.scores).map(([key, value]) =>
+      this.scores = ({ ...this.scores, [key]: value += newScore[key] ?? 0 })
+    );
+    Object.entries(this.scores).map(([key, value]) =>
+      document.getElementById(`game__card_footer_${key}`).innerText = value
+    )
+
+    if (this.scores.noble <= 0) {
+      this.nextScenario(3, "plague")
+      return false;
+    } else if (this.scores.people <= 0) {
+      this.nextScenario(3, "alone")
+      return false;
+    }
+
+    return true;
+  }
+
+  event = () => eventState(this)
+  info = () => infoState(this)
+
+  nextEvent = (nextEventName) => {
+    this.currentEvent = this.scenario[nextEventName];
+
+    if (!this.currentEvent) return this.nextScenario(3, "win");
+    switch (this.currentEvent.type) {
       case "event":
-        eventState(changeScene, changeState, newState, scores, updateScore)
+        this.event()
         break;
       case "info":
-        infoState(changeScene, changeState, newState)
+        this.info()
         break;
     }
   }
 
-  updateScore(scores);
-  changeState(state.startState);
+  nextScenario = (nextScenario = 1, firstEventName) => {
+    this.scenario = this.scenarios.at(nextScenario);
+    this.nextEvent(firstEventName ?? this.scenario.startState)
+  }
+}
+
+const inGameScene = async (changeScene, sceneEngine) => {
+  const gameSceneEngine = new GameSenario(sceneEngine.scenarios, sceneEngine.deaths, changeScene);
+
+  await gameSceneEngine.init();
+  gameSceneEngine.nextEvent(gameSceneEngine.currentEventName);
 }
 
 export default inGameScene;

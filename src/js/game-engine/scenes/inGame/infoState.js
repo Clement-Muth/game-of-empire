@@ -1,18 +1,20 @@
-const infoState = (changeScene, changeState, state) => {
-  const choice = { target: document.getElementById("game__card_buttons").children.item(0), object: state.option };
+const infoState = ({ currentEvent, ...event }) => {
+  const choice = { target: document.getElementById("game__card_buttons").children.item(0), object: currentEvent.option };
 
   document.getElementById("game__card_buttons").children.item(1).style = "display: none";
-  document.getElementById("game__question").innerHTML = state.question;
-  document.getElementById("game__caracter_card").innerHTML = state.content;
-  document.getElementById("game__caracter_card").style = `background-color: ${state.color}`;
-  document.getElementById("game__caracter_name").innerText = state.name;
+  document.getElementById("game__question").innerHTML = currentEvent.question;
+  document.getElementById("game__caracter_card").innerHTML = currentEvent.content;
+  document.getElementById("game__caracter_card").style = `background-color: ${currentEvent.color}`;
+  document.getElementById("game__caracter_name").innerText = currentEvent.name ?? "";
   const abortController = new AbortController();
 
   choice.target.querySelector("span").innerText = choice.object.value
   choice.target.addEventListener("click", () => {
-    if (choice.object.action?.loose) changeScene("dead");
     abortController.abort();
-    changeState(choice.object.next)
+    if (choice.object.action?.loose) return event.onLoss()
+    if (choice.object.action?.win) return event.onWin()
+    if (choice.object.nextScenario) return event.nextScenario();
+    else return event.nextEvent(choice.object.next)
   }, { signal: abortController.signal });
 }
 

@@ -1,5 +1,5 @@
 {
-  "startScene": "inGame",
+  "startScene": "loading",
   "scenes": {
     "loading": {
       "nextScene": "menu"
@@ -9,33 +9,30 @@
     },
     "inGame": {
       "prevScene": "menu",
-      "scenario": [
+      "scenarios": [
         {
           "startState": "intro",
           "intro": {
             "type": "event",
-            "question": "What's your king's name?",
+            "question": "Are you the new king?",
+            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#001123",
+            "name": "Spirit of the Fallen",
             "option1": {
-              "value": "Napoléon l'empereur",
-              "action": {
-                "loose": false
-              },
+              "value": "Yes",
               "next": "introSuccessor"
             },
             "option2": {
-              "value": "Roi Louis le Nul",
-              "action": {
-                "loose": false,
-                "updateScore": {
-                  "noble": -100
-                }
-              },
+              "value": "No",
               "next": "introSuccessor"
             }
           },
           "introSuccessor": {
             "type": "event",
             "question": "So you're my successor. Are you the one who assassinated me and usurped my throne?",
+            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#001123",
+            "name": "Spirit of the Fallen",
             "option1": {
               "value": "Yes...",
               "next": "introCharge"
@@ -48,13 +45,31 @@
           "introCharge": {
             "type": "event",
             "question": "Well... It's your turn, good luck with them. They're all pretty crazy, you'll see.",
+            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#001123",
+            "name": "Spirit of the Fallen",
             "option1": {
-              "value": "Yes...",
-              "next": "legitimacy"
+              "value": "Who?",
+              "next": "introGameplay"
             },
             "option2": {
-              "value": "No...",
-              "next": "death_plague"
+              "value": "What?",
+              "next": "introGameplay"
+            }
+          },
+          "introGameplay": {
+            "type": "event",
+            "question": "Just try to maintain equilibrium among the five powers to ensure your survival.",
+            "content": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#001123",
+            "name": "Spirit of the Fallen",
+            "option1": {
+              "value": "Yes",
+              "nextScenario": true
+            },
+            "option2": {
+              "value": "No",
+              "nextScenario": true
             }
           }
         },
@@ -66,7 +81,6 @@
             "option1": {
               "value": "Asserting my legitimacy",
               "action": {
-                "loose": false,
                 "updateScore": {
                   "people": 5,
                   "noble": 5
@@ -77,7 +91,6 @@
             "option2": {
               "value": "Ignore the accusations",
               "action": {
-                "loose": false,
                 "updateScore": {
                   "people": -10,
                   "noble": -35
@@ -89,10 +102,11 @@
           "plague": {
             "type": "event",
             "question": "<span class=\"small-description\">Your Majesty, <br/><br/>An epidemic is spreading throughout the kingdom, threatening the health of the people.<span>",
+            "content": "<img src=\"/public/images/caracters/sujet.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#82B544",
             "option1": {
               "value": "Invest in Healthcare",
               "action": {
-                "loose": false,
                 "updateScore": {
                   "loyalty": 10,
                   "people": 10,
@@ -104,10 +118,10 @@
             "option2": {
               "value": "Ignore the Epidemic",
               "action": {
-                "loose": false,
                 "updateScore": {
-                  "loyalty": -10,
-                  "people": -10,
+                  "loyalty": -20,
+                  "people": -20,
+                  "noble": -15,
                   "money": 20
                 }
               },
@@ -115,14 +129,27 @@
             }
           },
           "visitKingDialogue1": {
-            "type": "info",
+            "type": "event",
             "question": "<span class=\"tiny-description\">Your Majesty, <br/><br/>The visit of the neighboring king is approaching rapidly. It's a valuable opportunity to strengthen our diplomatic relations and ensure peace in the region.<span>",
             "content": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />",
             "color": "#245EA7",
             "name": "Lord Théobald de Castelgard",
-            "option": {
+            "option1": {
               "value": "Continue",
               "next": "visitKingDialogue2"
+            },
+            "option2": {
+              "value": "I don't care!",
+              "action": {
+                "updateScore": {
+                  "army": -30,
+                  "loyalty": -5,
+                  "noble": -35,
+                  "money": -20,
+                  "people": -10
+                }
+              },
+              "next": "armyNeedSolider"
             }
           },
           "visitKingDialogue2": {
@@ -153,36 +180,49 @@
             "option1": {
               "value": "Yes",
               "action": {
-                "loose": false,
                 "updateScore": {
                   "army": 10,
                   "noble": 10,
                   "money": -20
                 }
               },
-              "next": "visitKingDialogue1"
+              "next": "armyNeedSolider"
             },
             "option2": {
               "value": "No",
               "action": {
-                "loose": false,
                 "updateScore": {
                   "noble": -10,
                   "money": -10
                 }
               },
-              "next": "visitKingDialogue1"
+              "next": "armyNeedSolider"
             }
           },
-          "death_plague": {
-            "type": "info",
-            "question": "<span>The plague has finally entered the castle where it is quite effective at wiping out a large part of the court. You included</span>",
-            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
-            "color": "#231100",
-            "option": {
-              "value": "Continue",
+          "armyNeedSolider": {
+            "type": "event",
+            "question": "<span><br/><br/>We can never be too prepared. We need to recruit more soliders!<span>",
+            "content": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "#EE3623",
+            "name": "General Titus",
+            "option1": {
+              "value": "Yes",
               "action": {
-                "loose": true
+                "updateScore": {
+                  "army": 10,
+                  "people": -20,
+                  "money": -20
+                }
+              }
+            },
+            "option2": {
+              "value": "No",
+              "action": {
+                "updateScore": {
+                  "army": -30,
+                  "loyalty": -5,
+                  "money": -20
+                }
               }
             }
           }
@@ -194,20 +234,54 @@
             "question": "Blabla scenarion 2",
             "option1": {
               "value": "Napoléon l'empereur",
-              "action": {
-                "loose": false
-              },
               "next": "legitimacy"
             },
             "option2": {
               "value": "Roi Louis le Nul",
               "action": {
-                "loose": false,
                 "updateScore": {
-                  "noble": -100
+                  "noble": -65
                 }
               },
-              "next": "death_plague"
+              "next": "legitimacy"
+            }
+          }
+        },
+        {
+          "win": {
+            "type": "info",
+            "question": "<span>Your reign comes to an end, but you have skillfully guided your people. Congratulations on your accomplishments.</span>",
+            "content": "<img src=\"/public/images/caracters/king.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Done",
+              "action": {
+                "win": true
+              }
+            }
+          },
+          "plague": {
+            "type": "info",
+            "question": "<span>The new oligarchy forces you to exile, but don't worry, they have Wi-Fi there. You might not have a kingdom anymore, but at least you'll have a strong connection to complain about it online!</span>",
+            "content": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Continue",
+              "action": {
+                "loose": true
+              }
+            }
+          },
+          "alone": {
+            "type": "info",
+            "question": "<span>The castle is ransacked, your court disperses, and you're left with pigeons to rule over. Well, at least they'll coo-perate better than some nobles!</span>",
+            "content": "<img src=\"/public/images/caracters/dead-alone.svg\" style=\"top: 0; height: 95%\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Continue",
+              "action": {
+                "loose": true
+              }
             }
           }
         }
