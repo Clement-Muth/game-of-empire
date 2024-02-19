@@ -1,4 +1,13 @@
 <svg width="35" height="66" viewBox="0 0 35 66" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="cut-off-bottom">
+      <rect x="0" y="20" width="200" height="20" />
+    </clipPath>
+  </defs>
   <path d="M10.5 10.4211L17.5 0L24.5 10.4211V43.4211H35V53.8421H24.5V66H10.5V53.8421H0V43.4211H10.5V10.4211Z"
     fill="#FFFCCD" />
+  <path class="cls-1"
+    d="M10.5 10.4211L17.5 0L24.5 10.4211V43.4211H35V53.8421H24.5V66H10.5V53.8421H0V43.4211H10.5V10.4211Z"
+    clip-path="url(#cut-off-bottom)" />
+
 </svg>

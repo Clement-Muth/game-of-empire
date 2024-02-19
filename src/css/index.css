@@ -17,8 +17,10 @@ body {
 
 :root {
   --brown: #241405;
+  --dirtBrown: #463837;
   --gold: #BCA766;
-  --violet: #21214A;
+  --darkGold: "#887547",
+    --violet: #21214A;
   --orange: #EE3623;
 }
 
@@ -113,4 +115,16 @@ main {
   .page>h1 {
     font-size: 24px;
   }
+}
+
+.cls-1 {
+  fill: var(--gold);
+}
+
+.genelsvgs {
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+  width: 26px;
 }

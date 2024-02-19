@@ -24,7 +24,6 @@ class GameSenario {
   }
 
   onLoss = () => {
-    console.log("change scene to dead")
     this.onChangeScene("dead")
   }
   onWin = () => {

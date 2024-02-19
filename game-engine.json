@@ -244,7 +244,8 @@
                   "people": -20,
                   "money": -20
                 }
-              }
+              },
+              "next": "peasantHarvest"
             },
             "option2": {
               "value": "No",
@@ -252,8 +253,117 @@
                 "updateScore": {
                   "army": -30,
                   "loyalty": -5,
-                  "money": -20
+                  "money": 20
                 }
+              },
+              "next": "peasantHarvest"
+            }
+          },
+          "peasantHarvest": {
+            "type": "event",
+            "question": "<span><br/><br/>The harvest has been fantastic my Majesty!<span>",
+            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "var(--dirtBrown)",
+            "name": "Pierre",
+            "option1": {
+              "value": "Feed the people",
+              "action": {
+                "updateScore": {
+                  "army": 15,
+                  "people": 5,
+                  "money": 5,
+                  "loyalty": 5,
+                  "noble": 5
+                }
+              },
+              "next": "noblePigs"
+            },
+            "option2": {
+              "value": "Feed the army",
+              "action": {
+                "updateScore": {
+                  "army": 15,
+                  "people": -10,
+                  "noble": -10,
+                  "loyalty": -10,
+                  "money": -5
+                }
+              },
+              "next": "noblePigs"
+            }
+          },
+          "noblePigs": {
+            "type": "event",
+            "question": "<span><br/><br/>my Majesty, would you like to hunts some wild pigs?<span>",
+            "content": "<img src=\"/public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "var(--darkGold)",
+            "name": "Pierre",
+            "option1": {
+              "value": "Yes",
+              "next": "peasantSufferedHunt"
+            },
+            "option2": {
+              "value": "No",
+              "next": ""
+            }
+          },
+          "peasantSufferedHunt": {
+            "type": "event",
+            "question": "<span><br/><br/>You have suffered a terrible accident during the hunt! You're bleeding so much!<span>",
+            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "var(--dirtBrown)",
+            "name": "Pierre",
+            "option1": {
+              "value": "Get a doctor",
+              "action": {
+                "updateScore": {
+                  "people": -5,
+                  "money": -15,
+                  "loyalty": 5,
+                  "noble": -5
+                }
+              },
+              "next": "doctorDeath"
+            },
+            "option2": {
+              "value": "Let me rest",
+              "action": {
+                "updateScore": {
+                  "army": -5,
+                  "people": -5,
+                  "noble": -5,
+                  "loyalty": -10,
+                  "money": 15
+                }
+              }
+            }
+          },
+          "doctorDeath": {
+            "type": "event",
+            "question": "<span><br/><br/>My Majesty! you're dying of gangrene... There's nothing I can do.<span>",
+            "content": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />",
+            "color": "var(--dirtBrown)",
+            "name": "Dr. Armand Dubois",
+            "option1": {
+              "value": "What...",
+              "next": "gangrene"
+            },
+            "option2": {
+              "value": "What...",
+              "action": {
+                "loose": true
+              }
+            }
+          },
+          "gangrene": {
+            "type": "info",
+            "question": "<span>You die alone, rotting away in your bed, just like that leftover sandwich you forgot about in the royal fridge. Looks like even kings can't escape expiration dates!</span>",
+            "content": "<img src=\"/public/images/caracters/dead-king-alone.svg\" style=\"top: 0; bottom: 0; width: 280px\" />",
+            "color": "#231100",
+            "option": {
+              "value": "Continue",
+              "action": {
+                "loose": true
               }
             }
           }
@@ -306,7 +416,7 @@
           "alone": {
             "type": "info",
             "question": "<span>The castle is ransacked, your court disperses, and you're left with pigeons to rule over. Well, at least they'll coo-perate better than some nobles!</span>",
-            "content": "<img src=\"/public/images/caracters/dead-alone.svg\" style=\"top: 0; height: 95%\" />",
+            "content": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Continue",
