@@ -5,7 +5,7 @@ import startMusic from "../options/startMusic.js"
 const loadingScene = async (changeScene, sceneEngine) => {
   await injectPage("src/pages/loading.html");
 
-  startMusic("../public/sounds/game.mp3");
+  startMusic("./public/sounds/game.mp3");
 
   var buttonStart = document.createElement("button");
   buttonStart.innerText = "Start";
