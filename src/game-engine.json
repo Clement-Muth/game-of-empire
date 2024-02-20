@@ -13,42 +13,42 @@
         "spiritFallen": {
           "color": "#001123",
           "name": "Spirit of the Fallen",
-          "picture": "<img src=\"/public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/old-king.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "king": {
           "color": "#001123",
           "name": "King",
-          "picture": "<img src=\"/public/images/caracters/king.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/king.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "guardian": {
           "color": "var(--orange)",
           "name": "Capitaine Édouard Durand",
-          "picture": "<img src=\"/public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/guardian.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "sujet": {
           "color": "#82B544",
           "name": "Lady Isabelle de Montclair",
-          "picture": "<img src=\"/public/images/caracters/sujet.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/sujet.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "diplomat": {
           "color": "#245EA7",
           "name": "Lord Théobald de Castelgard",
-          "picture": "<img src=\"/public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/diplomat.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "noble": {
           "color": "var(--darkGold)",
           "name": "Lord Théodor",
-          "picture": "<img src=\"/public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/noble.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "people": {
           "color": "var(--dirtBrown)",
           "name": "Pierre",
-          "picture": "<img src=\"/public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/peasant.svg\" style=\"bottom: 0; width: 280px\" />"
         },
         "doctor": {
           "color": "var(--dirtBrown)",
           "name": "Dr. Armande Dubois",
-          "picture": "<img src=\"/public/images/caracters/doctor.svg\" style=\"bottom: 0; width: 280px\" />"
+          "picture": "<img src=\"./public/images/caracters/doctor.svg\" style=\"bottom: 0; width: 280px\" />"
         }
       },
       "scenarios": [
@@ -374,7 +374,7 @@
           "gangrene": {
             "type": "info",
             "question": "<span>You die alone, rotting away in your bed, just like that leftover sandwich you forgot about in the royal fridge. Looks like even kings can't escape expiration dates!</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-king-alone.svg\" style=\"top: 0; bottom: 0; width: 280px\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-king-alone.svg\" style=\"top: 0; bottom: 0; width: 280px\" />",
             "color": "#231100",
             "option": {
               "value": "Continue",
@@ -388,7 +388,7 @@
           "win": {
             "type": "info",
             "question": "<span>Your reign comes to an end, but you have skillfully guided your people. Congratulations on your accomplishments.</span>",
-            "picture": "<img src=\"/public/images/caracters/king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"./public/images/caracters/king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -400,7 +400,7 @@
           "plague": {
             "type": "info",
             "question": "<span>The new oligarchy forces you to exile, but don't worry, they have Wi-Fi there. You might not have a kingdom anymore, but at least you'll have a strong connection to complain about it online!</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -412,7 +412,7 @@
           "alone": {
             "type": "info",
             "question": "<span>The castle is ransacked, your court disperses, and you're left with pigeons to rule over. Well, at least they'll coo-perate better than some nobles!</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; 230px\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; 230px\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -424,7 +424,7 @@
           "money": {
             "type": "info",
             "question": "<span>You die alone, consumed by debts and financial uncertainty, abandoned by the coins that would have once crowned you.</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-with-pigeon.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -436,7 +436,7 @@
           "army": {
             "type": "info",
             "question": "<span>Your downfall comes swiftly, betrayed by the soldiers whose loyalty you once commanded, as they trade their swords for selfie sticks in this rebellion.</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
@@ -448,7 +448,7 @@
           "loyaulty": {
             "type": "info",
             "question": "<span>Your demise arrives, abandoned by the layout like a lost tourist in a maze of bad graphic design. Looks like even your kingdom's pixels have rebelled!</span>",
-            "picture": "<img src=\"/public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
+            "picture": "<img src=\"./public/images/caracters/dead-king.svg\" style=\"top: 0; height: 95%\" />",
             "color": "#231100",
             "option": {
               "value": "Done",
