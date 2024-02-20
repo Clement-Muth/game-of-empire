@@ -5,7 +5,7 @@ import deadScene from "./scenes/dead.js";
 import winScene from "./scenes/win.js";
 
 (async () => {
-  const dataEngine = await ((await fetch("/game-engine.json")).json());
+  const dataEngine = await ((await fetch("/public/game-engine.json")).json());
 
   let scene = dataEngine.startScene;
 
