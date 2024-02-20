@@ -3,9 +3,9 @@ import menuScene from "./scenes/menu.js";
 import inGameScene from "./scenes/inGame/index.js";
 import deadScene from "./scenes/dead.js";
 import winScene from "./scenes/win.js";
-import dataEngine from "../../game-engine.json" assert {type: "json"};
 
 (async () => {
+  const dataEngine = await ((await fetch("./public/game-engine.json")).json());
   let scene = dataEngine.startScene;
 
   const changeScene = (scene) => {
