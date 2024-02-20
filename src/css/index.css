@@ -29,6 +29,11 @@ body {
   src: url('../../public/fonts/Game\ of\ Thrones.ttf');
 }
 
+a {
+  color: orange;
+  font-size: 12px;
+}
+
 h1,
 h2,
 h3,
@@ -82,6 +87,7 @@ main {
   display: flex;
   gap: 15px;
   align-items: center;
+  color: white;
 }
 
 .center {
@@ -131,4 +137,8 @@ main {
   bottom: 50%;
   transform: translate(50%, 50%);
   width: 26px;
+}
+
+#inspired {
+  color: var(--gold);
 }
