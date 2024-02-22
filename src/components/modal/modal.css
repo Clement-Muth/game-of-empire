@@ -31,7 +31,7 @@
   z-index: 1;
 }
 
-.modal__content {
+#modal__content {
   display: flex;
   flex-direction: column;
   gap: 25px;

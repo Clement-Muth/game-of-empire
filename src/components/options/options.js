@@ -1,4 +1,6 @@
 import injection from "../../js/game-engine/utils/injection.js";
+import { injectCss, injectJs } from "../../utils/inject.js";
+import useModal from "../modal/modal.js";
 
 export const volumeOption = () => {
   var audio1 = document.getElementById("menu-audio");
@@ -9,12 +11,12 @@ export const volumeOption = () => {
   slider1.addEventListener("input", sliderActions);
 }
 
-(async () => {
-  await injection("src/components/options/options.html");
+const useOptions = async () => {
+  await useModal();
+  await injection("src/components/options/options.html", document.getElementById("modal__content"));
 
-  var script = document.createElement("script");
-  script.textContent = volumeOption();
-  document.body.appendChild(script);
+  injectJs(volumeOption);
+  injectCss("src/components/options/options.css");
 
   document.getElementsByClassName("options-game__button").item(0).addEventListener("click", () => {
     document.getElementById("backdrop").style = "visibility: visible";
@@ -25,4 +27,6 @@ export const volumeOption = () => {
     document.getElementById("backdrop").style = "visibility: hidden";
     document.getElementById("modal__options").close();
   });
-})()
+};
+
+export default useOptions;
