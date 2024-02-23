@@ -21,14 +21,41 @@ class GameSenario {
     await injectPage("src/pages/game.html");
     await scorebar();
 
-    [...document.getElementById("game__card_buttons").children].map((button, i) => button?.addEventListener("mouseenter", () => {
-      const option = [this.currentEvent.option1?.action?.updateScore, this.currentEvent.option2?.action?.updateScore][i]
+    const buttons = [...document.getElementById("game__card_buttons").children];
 
-      if (!option) return;
-      Object.entries(option).map(([key, value]) => {
+    buttons.forEach((button, i) => {
+      button?.addEventListener("mouseenter", () => {
+        const option = [this.currentEvent.option1?.action?.updateScore, this.currentEvent.option2?.action?.updateScore][i]
 
+        if (!option) return;
+
+        Object.entries(option).map(([key, value]) => {
+          const bull = document.getElementById(`game__card_footer_${key}`);
+
+          bull.classList.add("scorebar__bull_on");
+          switch (true) {
+            case Math.abs(value) >= 20:
+              bull.style = "width: 16px; height: 16px;";
+              break;
+            case Math.abs(value) >= 15:
+              bull.style = "width: 12px; height: 12px;";
+              break;
+            case Math.abs(value) >= 10:
+              bull.style = "width: 8px; height: 8px;";
+              break;
+            case Math.abs(value) >= 5:
+              bull.style = "width: 4px; height: 4px;";
+              break;
+          }
+        });
       });
-    }))
+      button.addEventListener("mouseleave", () =>
+        [...document.getElementsByClassName("scorebar__bull_on")].forEach((bull) => {
+          bull.classList.remove("scorebar__bull_on");
+          bull.style = "width: 0px; height: 0px";
+        }))
+    });
+
   }
 
   onLoss = () => this.onChangeScene("dead")
