@@ -4,29 +4,38 @@ import inGameScene from "./scenes/inGame/index.js";
 import deadScene from "./scenes/dead.js";
 import winScene from "./scenes/win.js";
 
-(async () => {
-  const dataEngine = await ((await fetch("./public/game-engine.json")).json());
-  let scene = dataEngine.startScene;
+export class GameEngine {
+  constructor() { }
 
-  const changeScene = (scene) => {
-    switch (scene) {
+  initGameEngine = async () => {
+    this.dataEngine = await ((await fetch("./public/game-engine.json")).json());
+    this.scene = this.dataEngine.startScene;
+  }
+
+  onChangeScene = (nextScene) => {
+    switch (nextScene) {
       case "loading":
-        loadingScene(changeScene, dataEngine.scenes[scene])
+        loadingScene(this.onChangeScene, this.dataEngine.scenes[nextScene])
         break;
       case "menu":
-        menuScene(changeScene, dataEngine.scenes[scene])
+        menuScene(this.onChangeScene, this.dataEngine.scenes[nextScene])
         break;
       case "inGame":
-        inGameScene(changeScene, dataEngine.scenes[scene])
+        inGameScene(this.onChangeScene, this.dataEngine.scenes[nextScene])
         break;
       case "win":
-        winScene(changeScene, dataEngine.scenes[scene])
+        winScene(this.onChangeScene, this.dataEngine.scenes[nextScene])
         break;
       case "dead":
-        deadScene(changeScene, dataEngine.scenes[scene])
+        deadScene(this.onChangeScene, this.dataEngine.scenes[nextScene])
         break;
     }
   }
+}
 
-  changeScene(scene);
+(async () => {
+  const gameEngine = new GameEngine();
+
+  await gameEngine.initGameEngine();
+  gameEngine.onChangeScene(gameEngine.scene);
 })();

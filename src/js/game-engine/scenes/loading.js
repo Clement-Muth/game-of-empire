@@ -1,11 +1,11 @@
 import { injectPage } from "../utils/injection.js";
 import checkPercentage from "../loader.js";
-import startMusic from "../options/startMusic.js"
+import playMusic from "../options/playMusic.js"
 
 const loadingScene = async (changeScene, sceneEngine) => {
   await injectPage("src/pages/loading.html");
 
-  startMusic("./public/sounds/game.mp3");
+  playMusic("./public/sounds/menu.mp3", "menu.mp3");
 
   var buttonStart = document.createElement("button");
   buttonStart.innerText = "Start";
